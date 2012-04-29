@@ -34,7 +34,7 @@ plugins=(git github command-not-found)
 source $ZSH/oh-my-zsh.sh
 
 # rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
+# export PATH="$HOME/.rbenv/bin:$PATH"
 
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
