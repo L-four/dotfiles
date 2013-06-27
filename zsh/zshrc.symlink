@@ -7,6 +7,10 @@ ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="robbyrussell"
 
+command_exists () {
+      type "$1" &> /dev/null ;
+}
+
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
@@ -21,7 +25,7 @@ alias ohmyzsh="vim ~/.oh-my-zsh"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 # COMPLETION_WAITING_DOTS="true"
@@ -29,12 +33,15 @@ alias ohmyzsh="vim ~/.oh-my-zsh"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git github ssh-agent command-not-found)
+plugins=(git github ssh-agent)
 
 source $ZSH/oh-my-zsh.sh
 
 # rbenv
 # export PATH="$HOME/.rbenv/bin:$PATH"
+
+# user bin
+export PATH="$HOME/bin:$PATH"
 
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
@@ -58,5 +65,6 @@ compinit
 
 # load every completion after autocomplete loads
 for config_file ($ZSH/**/completion.sh) source $config_file
-
-fortune | ponysay
+if command_exists fortune && command_exists ponysay; then
+  fortune | ponysay -X
+fi
